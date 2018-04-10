@@ -1,0 +1,30 @@
+gedit ~./bashrc
+
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
+export HADOOP_INSTALL=/home/hadoop/ … 
+
+source ~./bashrc
+
+cd /hadoop-2.7.5/etc/hadoop
+open hadoop-env.sh
+
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
+
+configure xml file (/hadoop-2.7.5/etc/hadoop) 
+core-site.xml
+
+<property>
+<name>fs.default.name</name>
+<value>hdfs://localhost:9000</value>
+</property>
+
+gedit hdfs-site.xml
+
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+</property>
+
+hdfs namenode -format
+
+start-dfs.sh
