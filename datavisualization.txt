@@ -1,0 +1,7 @@
+data=read.csv('C:/Users/hp/Desktop/dataset_Facebook.csv',sep=',')
+barplot(data$pagetotallikes,names.arg = data$paid,col="blue")
+plot(data$pagetotallikes,data$type,type='l',col='red')
+pie(data$postmonth,data$paid)
+brks<-c(1,2,3,4,5)
+hist(data$pagetotallikes,col="blue")
+
