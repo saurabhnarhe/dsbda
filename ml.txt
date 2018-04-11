@@ -1,0 +1,73 @@
+import pandas as pd;
+
+import matplotlib.pyplot as plt
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import MinMaxScaler
+
+data1 = pd.read_csv("D:\mtcars.csv")
+
+#print(data1.head())
+
+cleaned = data1.fillna(data1.mean())
+
+#print(cleaned)
+
+dup = data1[data1.duplicated]
+
+print("duplicated= ")
+print(dup)
+
+dropped = data1.drop_duplicates()
+
+print("dropped =")
+print(dropped)
+
+X_train = pd.read_csv('D:\X_train.csv')
+Y_train = pd.read_csv('D:\Y_train.csv')
+
+X_test = pd.read_csv('D:\X_test.csv')
+Y_test = pd.read_csv('D:\Y_test.csv')
+
+#print(X_train.head());
+
+X_train[X_train.dtypes[(X_train.dtypes=="float64")|(X_train.dtypes=="int64")].index.values]
+
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train[['ApplicantIncome', 'CoapplicantIncome','LoanAmount','Loan_Amount_Term', 'Credit_History']],Y_train)
+
+accuracy_score(Y_test,knn.predict(X_test[['ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History']]))
+
+a=Y_train.Target.value_counts()
+#print(a)
+
+b=Y_train.Target.count()
+#print(b)
+
+#print(a/b)
+
+c=Y_test.Target.value_counts()
+#print(c)
+
+d=Y_test.Target.count()
+#print(d)
+
+#print(c/d)
+
+min_max=MinMaxScaler()
+
+X_train_minmax=min_max.fit_transform(X_train[['ApplicantIncome', 'CoapplicantIncome','LoanAmount', 'Loan_Amount_Term', 'Credit_History']])
+
+X_test_minmax=min_max.fit_transform(X_test[['ApplicantIncome', 'CoapplicantIncome','LoanAmount', 'Loan_Amount_Term', 'Credit_History']])
+
+#print(X_train_minmax)
+#print(X_test_minmax)
+
+knn=KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train_minmax,Y_train)
+
+t=accuracy_score(Y_test,knn.predict(X_test_minmax))
+#print(t)
+
+

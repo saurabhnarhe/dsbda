@@ -1,0 +1,30 @@
+import pandas as pd;
+
+data = pd.read_csv("D:\\facebook.csv");
+
+data1 = data.loc[1:5, ['like', 'comment']];
+
+#print(data1)
+
+data1 = data1.sort_values(by='like', ascending=True)
+#print(data1);
+
+data2 = data.loc[2:30, ['like', 'lifetimeposttotalimpressions']]
+
+merged = pd.merge(data1, data2, on="like")
+
+#print(merged);
+
+#print(data1.T) # transposing
+
+#print(data1);
+
+data3 = pd.read_csv("D:\\weather.csv")
+
+print(data3)
+
+melted = pd.melt(data3, id_vars=["day"]);
+
+print(melted);
+
+#casted = pd.melt(melted, )
