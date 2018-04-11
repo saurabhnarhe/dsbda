@@ -59,5 +59,12 @@ write following lines in <configuration> in tags -
 
 15. hadoop dfs -get /hdfsdirectory/localsourcefile.txt
 
+16. hadoop dfs -rm /all/emp.txt
+
+17. Show file in hdfs in terminal
+    hadoop dfs -ls /
+
+18. Inside web browser http://localhost:50070
+
 
 
