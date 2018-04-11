@@ -48,3 +48,16 @@ write following lines in <configuration> in tags -
 9. jps
 
 10. browse http://localhost:50070/
+
+11. hadoop dfsadmin -safemode leave 
+
+12. hadoop dfs -mkdir /hdfsdirectory
+
+13. hadoop dfs -ls /
+
+14. hadoop dfs -put localsourcefile.txt /hdfsdirectory
+
+15. hadoop dfs -get /hdfsdirectory/localsourcefile.txt
+
+
+
