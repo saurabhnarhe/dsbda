@@ -1,0 +1,62 @@
+hbase(main):014:0> create 'emp1','ename','addr','order'
+
+Execute the following statements to insert records
+
+hbase(main):014:0> put 'emp1',1,'ename','A'
+
+hbase(main):014:0> put 'emp1',1,'addr:city','pune'
+
+hbase(main):014:0> put 'emp1',1,'addr:state','MH'
+
+hbase(main):014:0> put 'emp1',1,'order:no',78
+
+hbase(main):014:0> put 'emp1',1,'order:name','jk'
+
+
+hbase(main):005:0> put 'emp1',2,'ename','B'
+
+hbase(main):006:0> put 'emp1',2,'addr:city','Mumbai'
+
+hbase(main):007:0> put 'emp1',2,'order:no',34
+
+hbase(main):008:0> put 'emp1',2,'order:name','sx'
+
+
+Use ‘describe’ to get the description of the table.
+
+>describe 'customer'
+
+
+Use ‘get’ to retrieve the data for  employee 1
+
+hbase(main):003:0> get 'emp1',1
+
+Note that this gets all the data for the row. How can we limit this to only one column family ?
+
+hbase(main):012:0> get 'emp1', 1,'addr'
+
+How can we limit this to a specific column?
+
+To get city column from address column family of employee 1
+
+hbase(main):013:0> get 'emp1', 1,'addr:city'
+
+
+USE SCAN to retrieve all data
+
+hbase(main):001:0> scan 'emp1'
+
+retrieve all rows, addr column family
+
+hbase(main):015:0> scan 'emp1',{COLUMNS=>['addr']}
+
+Use ‘count’ to retrieve the number of rows in the table.
+
+hbase(main):016:0> count 'emp1'
+
+DELETE Column family
+
+delete ‘emp1’,1,’addr’
+
+DELETEALL  ‘emp1’,1
+
