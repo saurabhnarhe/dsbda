@@ -1,30 +1,50 @@
-gedit ~./bashrc
+1. gedit ~./bashrc
 
+write following lines at end -
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export HADOOP_INSTALL=/home/sanket/hadoop-2.7.5 
+export PATH=$PATH:$HADOOP_INSTALL/bin 
+export PATH=$PATH:$HADOOP_INSTALL/sbin 
+
+2. source ~./bashrc
+
+3. cd /hadoop-2.7.5/etc/hadoop
+4. gedit  hadoop-env.sh
+
+write following line -
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
-export HADOOP_INSTALL=/home/hadoop/ … 
 
-source ~./bashrc
+5. gedit core-site.xml
 
-cd /hadoop-2.7.5/etc/hadoop
-open hadoop-env.sh
-
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk
-
-configure xml file (/hadoop-2.7.5/etc/hadoop) 
-core-site.xml
-
+write following between <configuration> tags
+   
 <property>
 <name>fs.default.name</name>
 <value>hdfs://localhost:9000</value>
 </property>
 
-gedit hdfs-site.xml
+6. gedit hdfs-site.xml
 
-<property>
-<name>dfs.replication</name>
-<value>1</value>
-</property>
+write following lines in <configuration> in tags -
 
-hdfs namenode -format
+<property> 
+       <name>dfs.replication</name> 
+      <value>1</value> 
+</property> 
+<property> 
+      <name>dfs.namenode.name.dir</name> 
+      <value>file:/home/sanket/hadoop_tmp/hdfs/namenode</value> 
+</property> 
+<property> 
+      <name> dfs.namenode.data.dir </name> 
+      <value> file:/home/sanket/hadoop_tmp/hdfs/datanode </value> 
+</property> 
 
-start-dfs.sh
+7. hdfs namenode -format
+
+8. start-all.sh
+
+9. jps
+
+10. browse http://localhost:50070/
