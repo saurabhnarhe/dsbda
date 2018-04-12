@@ -26,5 +26,3 @@ print(data3)
 melted = pd.melt(data3, id_vars=["day"]);
 
 print(melted);
-
-#casted = pd.melt(melted, )
